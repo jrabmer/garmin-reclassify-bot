@@ -1,0 +1,8 @@
+venv/
+__pycache__/
+*.pyc
+
+# real credentials — only the .example template should ever be committed
+garmin-reclassify.env
+.garmin-reclassify/
+tokens/

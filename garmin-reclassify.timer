@@ -1,0 +1,12 @@
+[Unit]
+Description=Run garmin-reclassify.service daily at midnight
+
+[Timer]
+OnCalendar=*-*-* 00:00:00
+# If the machine was asleep/off at midnight, run as soon as it's back up.
+Persistent=true
+# Spread load slightly if you have many such timers; harmless here.
+RandomizedDelaySec=60
+
+[Install]
+WantedBy=timers.target

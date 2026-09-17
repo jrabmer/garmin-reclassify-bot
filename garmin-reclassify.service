@@ -1,0 +1,24 @@
+[Unit]
+Description=Reclassify Garmin custom activity as football
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+# Adjust these two paths to wherever you deployed the script/venv.
+WorkingDirectory=/opt/garmin-reclassify
+ExecStart=/opt/garmin-reclassify/venv/bin/python /opt/garmin-reclassify/reclassify.py
+EnvironmentFile=/etc/garmin-reclassify.env
+
+# Run as a dedicated non-root user rather than root.
+User=garmin-reclassify
+Group=garmin-reclassify
+
+# Basic hardening — loosen if it causes issues in your setup.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/opt/garmin-reclassify
+
+[Install]
+WantedBy=multi-user.target
